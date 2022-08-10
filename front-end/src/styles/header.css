@@ -1,7 +1,6 @@
 .header-main {
-  background-color: rgb(170, 170, 170);
+  background-color: #dddddd;
   padding: 10px 0;
-  margin-bottom: 10px;
 }
 
 .itens, .links {
@@ -23,8 +22,12 @@
 }
 
 a {
-  color: #fff;
+  color: rgb(65, 65, 65);
   text-decoration: none;
+}
+
+a:hover {
+  color: rgb(0, 0, 0);
 }
 
 h5 {

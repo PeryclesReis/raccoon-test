@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { apiLogin } from "../services/Api";
 import "../styles/login.css";
 
 export default function Login(props) {
@@ -11,9 +12,9 @@ export default function Login(props) {
   const [isDisabled, setIsDisabled] = useState(true);
   const [login, setLogin] = useState(INITIAL_LOGIN);
 
-  // const fetchApi = async (email, password) => {
-  //   return apiLogin(email, password).then(({data}) => data);
-  // }
+  const fetchApi = async (username, password) => {
+    return apiLogin(username, password).then((data) => data);
+  }
 
   const handleChange = ({ target: { name, value } }) => {
     setLogin({
@@ -24,16 +25,16 @@ export default function Login(props) {
 
   const handleClick = async () => {
     const { history } = props;
-    const { email, password } = login;
+    const { username, password } = login;
 
-    // const res = await fetchApi(email, password);
+    localStorage.clear();
 
-    // if (res.code) {
-    //   return history.push('/cadastrar');
-    // }
-    // localStorage.setItem('token', JSON.stringify(res.token));
-    // localStorage.setItem('user', JSON.stringify(res.usuario.nome));
-    // return history.push('/produtos');
+    const res = await fetchApi(username, password);
+    if (res.token) {
+      localStorage.setItem('token', JSON.stringify(res.token));
+      return history.push('/products');
+    }
+    return alert('Login incorreto!');
   };
 
   const inputsLogin = () => {
@@ -76,18 +77,28 @@ export default function Login(props) {
         >
           Entrar
         </Button>
+        <Link to='/'>
+          <p className="back-home">Voltar para home</p>
+        </ Link>
       </Form>
     );
   }
 
+  useEffect(() => {
+    const { history } = props;
+
+    const login = localStorage.getItem('token')
+    if (login) {
+      history.push('/products');
+    }
+    localStorage.clear();
+  }, []);
 
   useEffect(() => {
     const inputsVerify = () => {
-      const { email, password } = login;
-      // modelo que o regex de email verifica exemplo@exemplo.exemplo
-      const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+      const { password } = login;
       const passwordRegex = new RegExp(/[\w\D]{4}/g);
-      if (emailRegex.test(email) && passwordRegex.test(password)) {
+      if (passwordRegex.test(password)) {
         setIsDisabled(false);
       } else {
         setIsDisabled(true);

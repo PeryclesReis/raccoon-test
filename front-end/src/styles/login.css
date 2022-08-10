@@ -39,3 +39,12 @@
   margin-top: 30px;
   width: 70%;
 }
+
+.back-home {
+  color: black;
+  font-size: medium;
+}
+
+a .back-home {
+  margin-top: 20px;
+}
