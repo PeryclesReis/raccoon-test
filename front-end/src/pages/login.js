@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Figure, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import "../styles/login.css";
 
 export default function Login(props) {
   const INITIAL_LOGIN = {
-    email: '',
+    username: '',
     password: '',
   };
   const [isDisabled, setIsDisabled] = useState(true);
@@ -40,14 +40,14 @@ export default function Login(props) {
     return (
       <Form className="form-login">
         <span className="login-title">Seja bem vindo!</span>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
+        <Form.Group controlId="formBasicName">
+          <Form.Label>Username</Form.Label>
           <Form.Control
             className="input-email"
             size="lg"
-            type="email"
-            name="email"
-            value={ login.email }
+            type="username"
+            name="username"
+            value={ login.username }
             onChange={ handleChange }
             autoComplete="off"
           />

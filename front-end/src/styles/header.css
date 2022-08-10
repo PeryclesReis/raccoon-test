@@ -22,10 +22,15 @@
   width: 150px;
 }
 
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
 h5 {
   margin: 0 10px;
 }
 
-h5:last-child {
+a:last-child {
   margin: 0 50px;
 }
