@@ -10,6 +10,7 @@ Construir um site web de produtos onde o usuário tem que logar para poder ver o
 Foi utilizado a seguinte api: 'https://dummyjson.com/docs/', para listar os produtos e também para fazer o login 
 em que a própria api ja possui um usuário de teste.
 
+
 ## Tecnologia utilizada
 
 - ReactJS
@@ -18,3 +19,9 @@ em que a própria api ja possui um usuário de teste.
 - React-Router-Dom
 - Git
 - GitHub
+
+## Como iniciar projeto:
+
+- Clonar ou baixar o projeto para uma pasta.
+- Para instalar os `libs`(bibliotecas) entre na pasta raiz do projeto e rode `npm install`.
+- Agora rode `npm start`.
